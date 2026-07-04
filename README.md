@@ -1,0 +1,1 @@
+An AI-Based Disease Prediction System is a healthcare application that uses machine learning and data analysis to predict the likelihood of diseases based on a user’s medical data. It takes inputs such as symptoms, age, medical history, and lifestyle factors, then analyzes this information using trained models to provide early predictions
