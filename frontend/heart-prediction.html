@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Risk Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .required-mark {
+            color: #dc3545;
+            margin-left: 4px;
+        }
+        /* Optional: Add a subtle red border to highlight invalid fields when focused */
+        input:invalid:focus, select:invalid:focus {
+            border-color: #dc3545;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+        }
+    </style>
+</head>
+<body class="prediction-page">
+
+    <div class="prediction-container">
+        <header class="form-main-header">
+            <div class="header-title-wrapper">
+                <i class="fa-solid fa-heart-pulse main-heart-icon"></i>
+                <h1>Heart Disease Risk Prediction</h1>
+            </div>
+            <p>Please provide your health information below for accurate prediction</p>
+        </header>
+
+        <div class="prediction-layout">
+            
+            <aside class="sidebar">
+    <a href="index.html" class="sidebar-brand-link" id="brandLink">
+        <div class="sidebar-brand">
+            <div class="logo-circle"><i class="fa-solid fa-notes-medical"></i></div>
+            <div class="brand-info">
+                <h2>Predictive</h2>
+                <h3>Healthcare Analysis</h3>
+            </div>
+        </div>
+    </a>
+
+    <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-grid-2"></i> <span class="nav-text">Dashboard</span></a>
+        <a href="heart-prediction.html" class="menu-item"><i class="fa-solid fa-user-doctor"></i> <span class="nav-text">Health Prediction</span></a>
+        <a href="my-history.html" class="menu-item"><i class="fa-solid fa-clock-rotate-left"></i> <span class="nav-text">My History</span></a>
+        <a href="health-records.html" class="menu-item"><i class="fa-solid fa-folder-medical"></i> <span class="nav-text">Health Records</span></a>
+        <a href="charts-trends.html" class="menu-item"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Charts & Trends</span></a>
+        <a href="recommendations.html" class="menu-item"><i class="fa-solid fa-heart-circle-check"></i> <span class="nav-text">Recommendations</span></a>
+        <a href="profile-settings.html" class="menu-item active"><i class="fa-solid fa-gear"></i> <span class="nav-text">Patient Profile</span></a>
+        
+        <a href="index.html" class="menu-item logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span class="nav-text">Logout</span></a>
+    </nav>
+</aside>
+            <main class="form-workspace">
+                <form id="heartRiskForm" novalidate onsubmit="handleFormSubmit(event)">
+                    
+                    <section class="form-block-segment">
+                        <div class="segment-title">
+                            <i class="fa-regular fa-id-card"></i>
+                            <h3>Personal Information</h3>
+                        </div>
+                        
+                        <div class="inputs-grid split-three">
+                            <div class="form-element">
+                                <label>Name<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-regular fa-user"></i>
+                                    <input type="text" placeholder="Enter your full name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>Age (Years)<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    <input type="number" placeholder="Enter your age" min="1" max="120" required>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>Gender<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-solid fa-venus-mars"></i>
+                                    <select required>
+                                        <option value="" disabled selected>Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="form-block-segment">
+                        <div class="segment-title">
+                            <i class="fa-regular fa-heart"></i>
+                            <h3>Medical Information</h3>
+                        </div>
+
+                        <div class="inputs-grid split-three">
+                            <div class="form-element">
+                                <label>Chest Pain Type<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <select required>
+                                        <option value="" disabled selected>Select chest pain type</option>
+                                        <option value="0">Typical Angina</option>
+                                        <option value="1">Atypical Angina</option>
+                                        <option value="2">Non-anginal Pain</option>
+                                        <option value="3">Asymptomatic</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>Resting Blood Pressure (mm Hg)<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-solid fa-stethoscope"></i>
+                                    <input type="number" placeholder="Enter bp (e.g. 120)" required>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>Cholesterol (mg/dl)<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <input type="number" placeholder="Enter cholesterol" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inputs-grid split-three margin-top">
+                            <div class="form-element">
+                                <label>Fasting Blood Sugar (mg/dl)<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <select required>
+                                        <option value="" disabled selected>Select range</option>
+                                        <option value="0">&lt; 120 mg/dl</option>
+                                        <option value="1">&gt; 120 mg/dl</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>Resting ECG Results<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <select required>
+                                        <option value="" disabled selected>Select ECG result</option>
+                                        <option value="0">Normal</option>
+                                        <option value="1">ST-T Wave Abnormality</option>
+                                        <option value="2">Left Ventricular Hypertrophy</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>Max Heart Rate Achieved<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-solid fa-heart-pulse"></i>
+                                    <input type="number" placeholder="Enter max heart rate" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inputs-grid split-three margin-top">
+                            <div class="form-element">
+                                <label>Exercise Induced Angina<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-solid fa-person-running"></i>
+                                    <select required>
+                                        <option value="" disabled selected>Select (Yes/No)</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>ST Depression (Oldpeak)<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                    <input type="number" step="0.1" placeholder="Enter value (e.g. 1.2)" required>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>Slope of ST Segment<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-solid fa-chart-area"></i>
+                                    <select required>
+                                        <option value="" disabled selected>Select slope</option>
+                                        <option value="1">Upsloping</option>
+                                        <option value="2">Flat</option>
+                                        <option value="3">Downsloping</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inputs-grid split-two margin-top">
+                            <div class="form-element">
+                                <label>Number of Major Vessels (0-3)<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-solid fa-circle-nodes"></i>
+                                    <select required>
+                                        <option value="" disabled selected>Select number</option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label>Thalassemia<span class="required-mark">*</span></label>
+                                <div class="field-container">
+                                    <i class="fa-solid fa-dna"></i>
+                                    <select required>
+                                        <option value="" disabled selected>Select thal type</option>
+                                        <option value="1">Normal</option>
+                                        <option value="2">Fixed Defect</option>
+                                        <option value="3">Reversable Defect</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <button type="submit" class="btn-predict-action">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                        Predict Heart Disease Risk
+                    </button>
+                </form>
+            </main>
+        </div>
+    </div>
+
+<script>
+    async function handleFormSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+
+        // Custom validation logic to alert user of exact missing details
+        if (!form.checkValidity()) {
+            const requiredFields = form.querySelectorAll('[required]');
+            let missingFields = [];
+            let firstMissingElement = null;
+
+            // Loop through inputs to find which ones are empty
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    // Extract the label text (removing the * symbol)
+                    const labelContainer = field.closest('.form-element').querySelector('label');
+                    const labelText = labelContainer.innerText.replace('*', '').trim();
+                    missingFields.push(labelText);
+                    
+                    // Capture the very first missing element to redirect focus to it
+                    if (!firstMissingElement) {
+                        firstMissingElement = field;
+                    }
+                }
+            });
+
+            if (missingFields.length > 0) {
+                // Alert the user with the list of what they missed
+                alert("Mandatory Error: Please fill in the following required fields:\n\n• " + missingFields.join('\n• '));
+                // Redirect user by focusing on the first field they missed
+                firstMissingElement.focus();
+                return;
+            }
+        }
+
+        const submitBtn = event.target.querySelector('.btn-predict-action');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Analyzing...';
+        submitBtn.disabled = true;
+
+        // 1. Collect form data
+        const inputs = event.target.querySelectorAll('input, select');
+        const formData = {
+            name: inputs[0].value,
+            age: parseInt(inputs[1].value),
+            gender: inputs[2].value,
+            chestPainType: parseInt(inputs[3].value),
+            restingBP: parseInt(inputs[4].value),
+            cholesterol: parseInt(inputs[5].value),
+            fastingBloodSugar: parseInt(inputs[6].value),
+            restingECG: parseInt(inputs[7].value),
+            maxHeartRate: parseInt(inputs[8].value),
+            exerciseAngina: parseInt(inputs[9].value),
+            oldpeak: parseFloat(inputs[10].value),
+            slope: parseInt(inputs[11].value),
+            majorVessels: parseInt(inputs[12].value),
+            thalassemia: parseInt(inputs[13].value)
+        };
+
+        try {
+            // 2. Send data to Python (MongoDB)
+            const response = await fetch('http://localhost:5001/api/save-prediction', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            
+            if (response.ok) {
+                // 3. Mock a risk score for the UI based on inputs (to feed the dashboard)
+                let riskScore = 15; 
+                if (formData.age > 50) riskScore += 15;
+                if (formData.restingBP > 130) riskScore += 10;
+                if (formData.cholesterol > 200) riskScore += 15;
+                
+                let statusText = "Low Risk", colorClass = "text-green", badgeClass = "light-green", badgeText = "Good";
+                if (riskScore > 30) { statusText = "Moderate Risk"; colorClass = "text-orange"; badgeClass = "light-orange"; badgeText = "Moderate"; }
+                if (riskScore > 60) { statusText = "High Risk"; colorClass = "text-red"; badgeClass = "light-red"; badgeText = "At Risk"; }
+
+                const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                
+                // 4. Save to LocalStorage so your script.js Dashboard can read it!
+                const newRecord = { 
+                    id: 'rec_' + Date.now(),
+                    date: today, 
+                    score: riskScore, 
+                    statusText: statusText, 
+                    statusColorClass: colorClass, 
+                    badgeClass: badgeClass, 
+                    badgeText: badgeText,
+                    vitals: { hr: formData.maxHeartRate, bp: formData.restingBP, bs: formData.fastingBloodSugar === 1 ? 140 : 95 }
+                };
+                
+                let history = JSON.parse(localStorage.getItem('healthHistory')) || [];
+                history.unshift(newRecord); 
+                localStorage.setItem('healthHistory', JSON.stringify(history));
+
+                alert("Prediction saved to MongoDB successfully!");
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Failed to save data to MongoDB.");
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        } catch (error) {
+            console.error("Database error:", error);
+            alert("Could not connect to the Python server on Port 5001. Is it running?");
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+</script>
+</body>
+</html>

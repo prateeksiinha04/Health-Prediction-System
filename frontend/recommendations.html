@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personalized Recommendations - HealthPredict AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .rec-card { background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); }
+        .rec-card i { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; display: block; }
+        .risk-alert { background: #fee2e2; border-left: 4px solid #ef4444; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; }
+    </style>
+</head>
+<body class="dashboard-page recommendations-page">
+    <div class="dashboard-wrapper">
+        <!-- STANDARD CLINICAL SIDEBAR -->
+<aside class="sidebar">
+    <!-- Brand Logo / Link to Login -->
+    <a href="index.html" class="sidebar-brand-link" id="brandLink">
+        <div class="sidebar-brand">
+            <div class="logo-circle"><i class="fa-solid fa-notes-medical"></i></div>
+            <div class="brand-info">
+                <h2>Predictive</h2>
+                <h3>Healthcare Analysis</h3>
+            </div>
+        </div>
+    </a>
+
+    <!-- Navigation Menu -->
+    <nav class="sidebar-menu">
+        <a href="dashboard.html" class="menu-item"><i class="fa-solid fa-grid-2"></i> <span class="nav-text">Dashboard</span></a>
+        <a href="heart-prediction.html" class="menu-item"><i class="fa-solid fa-user-doctor"></i> <span class="nav-text">Health Prediction</span></a>
+        <a href="my-history.html" class="menu-item"><i class="fa-solid fa-clock-rotate-left"></i> <span class="nav-text">My History</span></a>
+        <a href="health-records.html" class="menu-item"><i class="fa-solid fa-folder-medical"></i> <span class="nav-text">Health Records</span></a>
+        <a href="charts-trends.html" class="menu-item"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Charts & Trends</span></a>
+        <a href="recommendations.html" class="menu-item"><i class="fa-solid fa-heart-circle-check"></i> <span class="nav-text">Recommendations</span></a>
+        <a href="profile-settings.html" class="menu-item"><i class="fa-solid fa-gear"></i> <span class="nav-text">Patient Profile</span></a>
+        
+        <!-- Logout Button -->
+        <a href="index.html" class="menu-item logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span class="nav-text">Logout</span></a>
+    </nav>
+</aside>
+
+        <main class="main-content">
+            <h1>Health Recommendations</h1>
+            <div id="riskAlertContainer"></div>
+            
+            <div class="rec-grid" id="recGrid">
+                </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

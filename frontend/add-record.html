@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Health Record</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .form-container { background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); max-width: 800px; margin: 2rem auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+        .form-group input, .form-group select, .form-group textarea { padding: 0.8rem; border-radius: 8px; border: 1px solid var(--border-color); outline: none; font-family: inherit; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); }
+    </style>
+</head>
+<body style="background: #f8fafc; padding: 2rem;">
+
+    <div class="form-container">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 1rem;">
+            <a href="health-records.html" style="color: var(--text-muted); font-size: 1.2rem; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i></a>
+            <h2 style="margin: 0; color: var(--text-dark);">Add Manual Health Record</h2>
+        </div>
+
+        <form id="standaloneAddRecordForm">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Record Type</label>
+                    <select id="recordType">
+                        <option value="Manual">Manual Entry</option>
+                        <option value="External">External Report</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="recordDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Provider / Hospital</label>
+                    <input type="text" id="recordProvider" placeholder="e.g. City General">
+                </div>
+                <div class="form-group">
+                    <label>Upload Report (Optional)</label>
+                    <input type="file" id="recordFile">
+                </div>
+                <div class="form-group">
+                    <label>Heart Rate (bpm)</label>
+                    <input type="number" id="recordHr" placeholder="e.g. 75">
+                </div>
+                <div class="form-group">
+                    <label>Blood Pressure</label>
+                    <input type="text" id="recordBp" placeholder="e.g. 120/80">
+                </div>
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 2rem;">
+                <label>Notes / Diagnosis</label>
+                <textarea id="recordNotes" rows="4" placeholder="Enter clinical notes..."></textarea>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <a href="health-records.html" style="padding: 0.8rem 1.5rem; background: #f1f5f9; color: var(--text-dark); text-decoration: none; border-radius: 8px; font-weight: 600;">Cancel</a>
+                <button type="submit" style="padding: 0.8rem 2rem; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Save Record</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Set today's date automatically
+        document.getElementById('recordDate').valueAsDate = new Date();
+
+        // Handle the form submission
+        document.getElementById('standaloneAddRecordForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const type = document.getElementById('recordType').value;
+            const dateVal = document.getElementById('recordDate').value;
+            const provider = document.getElementById('recordProvider').value || 'External Hospital';
+            const hr = document.getElementById('recordHr').value || '--';
+            const bp = document.getElementById('recordBp').value || '--';
+            const notes = document.getElementById('recordNotes').value || 'Manual Record';
+            
+            const fileInput = document.getElementById('recordFile');
+            const fileName = (fileInput.files.length > 0) ? fileInput.files[0].name : null;
+            
+            const formattedDate = new Date(dateVal).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            
+            const newRecord = {
+                id: 'rec_' + Date.now(), 
+                date: formattedDate,
+                score: 0, 
+                statusText: notes,
+                provider: provider,
+                fileName: fileName,
+                statusColorClass: 'text-dark', 
+                badgeClass: 'light-blue', 
+                badgeText: type,
+                vitals: { hr: hr, bp: bp, bs: '--' },
+                isManual: true
+            };
+
+            // Save to localStorage
+            let history = JSON.parse(localStorage.getItem('healthHistory')) || [];
+            history.unshift(newRecord);
+            localStorage.setItem('healthHistory', JSON.stringify(history));
+            
+            // Redirect back to the records page
+            window.location.href = 'health-records.html';
+        });
+    </script>
+</body>
+</html>

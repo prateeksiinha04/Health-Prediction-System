@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | HealthPredict AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <a href="index.html" class="sidebar-brand-link" id="brandLink">
+                <div class="sidebar-brand">
+                    <div class="logo-circle"><i class="fa-solid fa-notes-medical"></i></div>
+                    <div class="brand-info">
+                        <h2>Predictive</h2>
+                        <h3>Healthcare Analysis</h3>
+                    </div>
+                </div>
+            </a>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item active"><i class="fa-solid fa-grid-2"></i> <span class="nav-text">Dashboard</span></a>
+                <a href="heart-prediction.html" class="menu-item"><i class="fa-solid fa-user-doctor"></i> <span class="nav-text">Health Prediction</span></a>
+                <a href="my-history.html" class="menu-item"><i class="fa-solid fa-clock-rotate-left"></i> <span class="nav-text">My History</span></a>
+                <a href="health-records.html" class="menu-item"><i class="fa-solid fa-folder-medical"></i> <span class="nav-text">Health Records</span></a>
+                <a href="charts-trends.html" class="menu-item"><i class="fa-solid fa-chart-line"></i> <span class="nav-text">Charts & Trends</span></a>
+                <a href="recommendations.html" class="menu-item"><i class="fa-solid fa-heart-circle-check"></i> <span class="nav-text">Recommendations</span></a>
+                <a href="profile-settings.html" class="menu-item"><i class="fa-solid fa-gear"></i> <span class="nav-text">Patient Profile</span></a>
+                <a href="index.html" class="menu-item logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span class="nav-text">Logout</span></a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="user-greeting">
+                    <h1>Patient Dashboard</h1>
+                    <p>Clinical overview for: <span class="username-highlight">Patient</span></p>
+                </div>
+                <div class="header-actions">
+                    <div class="noti-bell"><i class="fa-regular fa-bell"></i><span class="badge">1</span></div>
+                    <div class="profile-avatar"><img src="https://i.pravatar.cc/100?img=32" alt="Avatar"></div>
+                </div>
+            </header>
+
+            <div class="clinical-portal-container" style="max-width: 1200px;">
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    
+                    <div class="clinical-data-card">
+                        <div class="card-ribbon" style="background: #ef4444;"></div>
+                        <div class="card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Heart Rate</p>
+                                <i class="fa-solid fa-heart pulse-heart" style="color: #ef4444; font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="font-size: 1.8rem; color: #0f172a; margin-top: 0.5rem;">72 <span style="font-size: 1rem; color: #94a3b8;">bpm</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="clinical-data-card">
+                        <div class="card-ribbon" style="background: #3b82f6;"></div>
+                        <div class="card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Blood Pressure</p>
+                                <i class="fa-solid fa-droplet" style="color: #3b82f6; font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="font-size: 1.8rem; color: #0f172a; margin-top: 0.5rem;">120/80 <span style="font-size: 1rem; color: #94a3b8;">mmHg</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="clinical-data-card">
+                        <div class="card-ribbon" style="background: #8b5cf6;"></div>
+                        <div class="card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Blood Sugar</p>
+                                <i class="fa-solid fa-wave-square oscillate-sugar" style="color: #8b5cf6; font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="font-size: 1.8rem; color: #0f172a; margin-top: 0.5rem;">95 <span style="font-size: 1rem; color: #94a3b8;">mg/dL</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="clinical-data-card">
+                        <div class="card-ribbon" style="background: #10b981;"></div>
+                        <div class="card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase;">SpO2 (Oxygen)</p>
+                                <i class="fa-solid fa-circle-notch activity-spin" style="color: #10b981; font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="font-size: 1.8rem; color: #0f172a; margin-top: 0.5rem;">98 <span style="font-size: 1rem; color: #94a3b8;">%</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+                    <div class="clinical-data-card">
+                        <div class="card-header"><h3><i class="fa-solid fa-chart-area"></i> Telemetry Trends</h3></div>
+                        <div class="card-body" style="height: 300px;"><canvas id="healthTrendChart"></canvas></div>
+                    </div>
+                    <div class="clinical-data-card">
+                        <div class="card-header"><h3><i class="fa-solid fa-microscope"></i> Assessment</h3></div>
+                        <div class="card-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                             <div class="status-pill bg-safe" style="font-size: 1.2rem; padding: 1rem 2rem;">LOW RISK</div>
+                             <p style="margin-top: 1rem; color: #64748b; text-align: center; font-size: 0.9rem;">Analysis complete.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="profileModal" class="modal-overlay"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
